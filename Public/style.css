@@ -277,6 +277,10 @@ img.picture:hover {
     transition: 0.2s;
 }
 
+.project-showcase-details {
+    flex-direction: column;
+}
+
 .project-showcase:hover {
     box-shadow: #FEAF31 0 3px 20px;
 }
@@ -390,7 +394,67 @@ img.picture:hover {
     100% {
         background-color: #FF204E;
         box-shadow: 0 0 30px #FF204E;
-        /* test
-         */
     }
+}
+
+@media (max-width: 550px) {
+    * {
+        font-size: 17px;
+    }
+
+    .navigation {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .left {
+        margin: 0;
+    }
+
+    .right {
+        margin: 0;
+    }
+
+    .navigation-links {
+        padding: 5px;
+    }
+}
+
+@media screen and (max-width: 950px) {
+    .main {
+        padding: 5px;
+    }
+
+    .content-group {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content {
+        width: 90%;
+    }
+
+    .projects-showcase-panel {
+        margin: 20px;
+        overflow-y: scroll;
+    }
+
+    .project-showcase {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        height: min-content;
+    }
+
+    .project-showcase-image {
+        display: flex;
+        object-fit: cover !important;
+        width: 30%;
+        margin: 0 20px 0 0;
+        min-height: 100%;
+        max-height: 100%;
+    }
+
 }
