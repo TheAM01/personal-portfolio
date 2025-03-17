@@ -390,5 +390,7 @@ img.picture:hover {
     100% {
         background-color: #FF204E;
         box-shadow: 0 0 30px #FF204E;
+        /* test
+         */
     }
 }
