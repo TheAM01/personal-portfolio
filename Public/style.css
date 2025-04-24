@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap');
 
 * {
     box-sizing: border-box;
     font-size: 22px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Space Grotesk", sans-serif;
     /*border: 1px dotted yellow;*/
 }
 
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -37,6 +37,7 @@ html, body {
 }
 
 body {
+    background-image: linear-gradient(to bottom right, #111827, #000000);
     display: flex;
     background-size: cover;
     /*background: linear-gradient(180deg, #00224D, 60%, #A0153E) no-repeat fixed;*/
@@ -50,6 +51,7 @@ body {
     overflow-y: scroll;
     scroll-snap-type: y mandatory; /* Enable vertical scroll snapping */
     flex-direction: column;
+    width: 100%;
 }
 
 .navigation {
@@ -67,7 +69,7 @@ a {
     border: 2px solid #FEAF31;
     border-radius: 10px;
     margin-left: 10px;
-    box-shadow: 0 0 20px #FEAF31, 0 0 20px #FEAF31 inset;
+    box-shadow: 0 0 25px #FEAF31, 0 0 25px #FEAF31 inset;
     transition: 0.2s;
 }
 
@@ -96,15 +98,20 @@ a {
     /*background-color: #FEAF31;*/
 }
 
+.name {
+    font-size: 30px;
+}
+
 .right {
     padding: 20px;
 }
 
-div {
+div , span{
     display: flex;
 }
 
 .main {
+
     scroll-behavior: smooth;
     min-height: 100vh;
     height: 100vh;
@@ -118,11 +125,12 @@ div {
 }
 
 .main:nth-child(odd) {
-    background-color: #383749;
+    
+    /* background-color: #383749; */
 }
 
 .main:nth-child(even) {
-    background-color: #2D2B3B;
+    /* background-color: #2D2B3B; */
 /*    FEAF31*/
 }
 
@@ -133,7 +141,7 @@ div {
     width: 100%;
     border: 2px dotted red;
     z-index: 2;
-    margin: auto 0 0 0 ;
+    margin: auto 0 0 0;
 }
 
 .content-group {
@@ -143,8 +151,17 @@ div {
     align-items: center;
 }
 
+.greet {
+    font-size: 40px;
+    align-items: center;
+    text-wrap: nowrap;
+}
+
+
+
+
 span {
-    margin: 0 5px;
+    margin: 0;
     display: flex;
     flex-wrap: wrap;
 }
@@ -171,15 +188,21 @@ h1 {
 span.emphasis {
     color: #FEAF31;
     font-size: 40px;
-    margin-left: 15px;
+    margin-left: 0.25em;
+    text-wrap: nowrap;
 }
 
 span.list-item {
-    display: list-item;
-    list-style-type: circle;
-    list-style-position: inside;
+    font-weight: 300;
+    margin: 2px 0;
+    display: inline-block;
 }
+span.list-item:before {
 
+    display: inline-block;
+    content: "";
+    
+}
 span#profession {
     display: inline-block !important;
     margin-right: 0 !important;
@@ -313,8 +336,11 @@ img.picture:hover {
     margin: 10px 0;
 }
 
-.reviews-panel {
-    flex-direction: column;
+.reviews-panel { /**/
+    width: 100%;
+    padding: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .review-showcase {
@@ -399,13 +425,18 @@ img.picture:hover {
 
 @media (max-width: 550px) {
     * {
-        font-size: 17px;
+        font-size: 16px;
+    }
+
+    .name {
+        display: none;
     }
 
     .navigation {
-        flex-direction: column;
+        width: 100%;
+        /* flex-direction: column; */
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
     }
 
     .left {
@@ -422,6 +453,10 @@ img.picture:hover {
 }
 
 @media screen and (max-width: 950px) {
+
+    h1 > span {
+        font-size: 25px !important;
+    }
     .main {
         padding: 5px;
     }
@@ -430,10 +465,16 @@ img.picture:hover {
         width: 100%;
         align-items: center;
         justify-content: center;
+        padding: 0;
     }
 
     .content {
-        width: 90%;
+        width: 100%;
+    }
+
+    .reviews-panel {
+        margin: 20px;
+        overflow-y: scroll;
     }
 
     .projects-showcase-panel {
@@ -457,6 +498,35 @@ img.picture:hover {
         max-height: 100%;
     }
 
+    #scroll-behavior-button {
+        padding: 7px;
+        font-size: 12px;
+    }
+
+    .controls {
+        bottom: 0;
+        right: 0;
+    }
+
+    .project-showcase {
+        padding: 10px;
+    }
+
+    .reviews-panel {
+        margin: 0;
+        width: 100%;
+        padding: 5px;
+    }
+
+    .review-showcase {
+        width: 100% ;
+    }
+
+    .projects-showcase-panel {
+        margin: 0;
+        width: 100%;
+        padding: 5px;
+    }
     /* deploying on vercel :/ */
 
 }

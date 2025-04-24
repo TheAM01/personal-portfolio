@@ -96,7 +96,7 @@ function disableScrollSnapping() {
 
 	const button = document.getElementById("scroll-behavior-button")
 	button.setAttribute("onclick", "enableScrollSnapping()");
-	button.innerText = "Enable scroll snap"
+	button.innerText = "Enable ScrollSnap"
 }
 
 function enableScrollSnapping() {
@@ -104,7 +104,7 @@ function enableScrollSnapping() {
 
 	const button = document.getElementById("scroll-behavior-button")
 	button.setAttribute("onclick", "disableScrollSnapping()");
-	button.innerText = "Disable scroll snap"
+	button.innerText = "Disable ScrollSnap"
 }
 
 function changeClassProperty(className, type) {

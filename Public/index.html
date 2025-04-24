@@ -15,7 +15,7 @@
         <div class="navigation">
             <div class="left">
                 <img src="Media/TheAM-logo.png" alt="logo" class="logo">
-                TheAM
+                <div class="name">TheAM</div>
             </div>
             <div class="right">
                 <a href="#Projects" class="navigation-links">Projects</a>
@@ -27,25 +27,26 @@
             <div class="content-group">
                 <div class="content">
                     <h1>
-                        Hi! I'm <span class="emphasis">Abdul Mueed</span>
+                        <span class="greet">Hi! I'm </span> <span class="emphasis">Abdul Mueed</span>
                     </h1>
+                    <span></span>
                     <span class="list-item">
                         I'm a <span id="profession"></span><span class="blinker">|</span>
                     </span>
                     <span class="list-item">
-                        I have worked on numerous web applications.
+                        My primary stack is NextJS, TailwindCSS & MongoDB.
                     </span>
 
                     <span class="list-item">
-                        I'm studying Software Engineering at UBIT.
+                        Studying Software Engineering at UBIT.
                     </span>
 
                     <span class="list-item">
-                        I am currently working as a freelancer.
+                        Currently working as a freelancer.
                     </span>
 
                     <span class="list-item">
-                        I'm skilled in Node.js.
+                        Primarily skilled in Node.js, NextJS, TailwindCSS & MongoDB.
                     </span>
                 </div>
 
@@ -56,10 +57,17 @@
     <div class="main" id="Projects">
         <div class="heading">Projects</div>
         <div class="projects-showcase-panel">
+            <a href="http://87.106.52.7:6417" class="project-showcase">
+                <img src="Projects/czne.png" alt="" class="project-showcase-image">
+                <div class="project-showcase-details">
+                    <div class="project-showcase-title">⭐ CZNE by SolidPixel</div>
+                    <div class="project-showcase-description">Demonstration site for sale of RC replicas.</div>
+                </div>
+            </a>
             <a href="http://194.164.125.5:6024/" class="project-showcase">
                 <img src="Projects/spn.jpg" alt="" class="project-showcase-image">
                 <div class="project-showcase-details">
-                    <div class="project-showcase-title">⭐ Solid Pixel Nashe</div>
+                    <div class="project-showcase-title">SN by SolidPixel</div>
                     <div class="project-showcase-description">SATIRE website for sale of unconventional items.</div>
                 </div>
             </a>
@@ -181,7 +189,7 @@
         <a href="/resume" class="download_resume">Download</a>
     </div>
     <div class="controls">
-        <button onclick="disableScrollSnapping()" id="scroll-behavior-button">Disable scroll snap</button>
+        <button onclick="disableScrollSnapping()" id="scroll-behavior-button">Toggle ScrollSnap</button>
     </div>
 </div>
     <script src="script.js"></script>
