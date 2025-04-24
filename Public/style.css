@@ -485,16 +485,14 @@ img.picture:hover {
     }
 
     .project-showcase {
+        width: 100%;
         position: relative;
         height: 100px;
         padding: 0 !important;
         flex-direction: row;
-        justify-content: start;
         /* align-items: center; */
         overflow: hidden;
         display: flex;
-        float: left;
-        pointer-events: none;
     }
 
     .project-showcase-image {
