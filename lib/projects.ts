@@ -21,7 +21,14 @@ export type Project = {
   tagline: string
   /** ~150 chars, used for meta description and cards */
   summary: string
-  description: string[]
+  /** Plain-English problem → solution → how it solves it → benefits, then a technical paragraph */
+  about: {
+    problem: string
+    solution: string
+    approach: string
+    benefits: string
+    technical: string
+  }
   category: string
   applicationCategory: string
   audience: string
@@ -49,12 +56,18 @@ export const projects: Project[] = [
     tagline: 'AI email & messaging platform for embroidery digitizing studios',
     summary:
       'Krest is an AI outreach engine for embroidery digitizing studios: per-recipient AI emails, multi-step sequences, a no-bounce firewall, a unified inbox and a WhatsApp AI agent.',
-    description: [
-      'Krest is the outreach engine built for embroidery digitizing and vectorizing businesses. Instead of a generic blast tool, every email, sequence and reply is tuned to win new shops and keep existing customers coming back.',
-      'An AI copywriter writes a unique, structured email for every contact — greeting, a couple of tight paragraphs, a clear ask and a sign-off — personalized to their name, company and country, and guard-railed so it never invents a price or an address. If the AI cannot produce a clean draft, it holds the email for human review instead of guessing.',
-      'Right before anything is sent, every address passes a suppression firewall: unsubscribed, hard-bounced, blacklisted, suppressed or malformed addresses are dropped, so nothing that could bounce ever leaves. Replies land in a Gmail-style inbox and automatically stop the sequence, so a real conversation is never interrupted by a robot.',
-      'Alongside email, Krest runs a full WhatsApp workspace with Olivia, an AI agent that answers from the knowledge base, sends approved broadcast templates and escalates to a human the moment someone needs one.',
-    ],
+    about: {
+      problem:
+        "Embroidery digitizing studios get most of their work from apparel shops, print shops and brands. Keeping in touch with hundreds of these customers by hand takes hours every week. When emails are sent in bulk, many bounce or land in spam, which slowly damages the studio’s email reputation, and replies get lost in a crowded inbox.",
+      solution:
+        "A studio needs a way to send a personal email to every customer without writing each one, follow up at the right time, never email an address that will bounce, and see every reply in one place.",
+      approach:
+        "Krest writes a personal email for each customer using AI and sends follow-ups on a schedule, so the studio doesn’t have to. Before anything goes out, it checks every address and skips the risky ones, so emails don’t bounce. When someone replies, the automatic emails stop and the reply lands in one shared inbox for the team. Krest also answers WhatsApp messages with an AI assistant that hands over to a person when needed.",
+      benefits:
+        "Studios reach far more customers in a fraction of the time, win back customers who went quiet, and protect their email reputation. Nobody gets an awkward automated follow-up after they’ve already replied, every conversation is in one place, and clear numbers show which emails actually bring in work.",
+      technical:
+        "Krest is a Next.js web application built around a send pipeline: an audience builder with live deliverability counts, per-recipient LLM generation with guardrails and quality scoring (failed or low-scoring drafts are routed to a human review queue instead of sending), and a suppression firewall that filters unsubscribed, hard-bounced, blacklisted and malformed addresses, with optional live verification and MX lookups. Delivery rotates across Gmail accounts connected over OAuth and SMTP senders within daily caps and send windows. Open and click tracking, reply detection that halts sequences, and automatic bounce suppression feed the analytics. The WhatsApp workspace runs on the WhatsApp Business API with a knowledge-base-grounded AI agent and human escalation, alongside scoped user permissions and a dev/prod sandbox switch.",
+    },
     category: 'AI Email Outreach',
     applicationCategory: 'BusinessApplication',
     audience: 'Embroidery digitizing & vectorizing studios',
@@ -101,11 +114,18 @@ export const projects: Project[] = [
     tagline: 'AI WhatsApp agent for online stores',
     summary:
       'Krispin answers store customers on WhatsApp around the clock, hands tricky chats to your team, and runs referral campaigns, broadcasts and warranty claims from one dashboard.',
-    description: [
-      'Krispin is a tireless WhatsApp agent for e-commerce stores. Customers message the store’s WhatsApp number and get an instant answer, day or night — trained on the store’s FAQs, files and product catalog, and written in the brand’s voice.',
-      'When a customer needs a person, the chat is escalated and the team takes over in the same thread. Every conversation lives in one searchable inbox with escalations flagged at the top and each customer’s tags, orders and spend beside the chat.',
-      'Beyond support, Krispin is a growth engine: referral campaigns with prizes and leaderboards, approved WhatsApp template broadcasts to hundreds of customers at once, restock waitlists, and warranty claims raised straight from the chat with photos and order details attached.',
-    ],
+    about: {
+      problem:
+        "Online stores get most of their customer questions on WhatsApp: “Is this in stock?”, “Where is my order?”, “Does it have a warranty?”. Replying quickly to every message means having staff on their phones all day and night, and a late reply often means a lost sale. Complaints and warranty requests get buried in hundreds of chats.",
+      solution:
+        "A store needs a helper that replies instantly at any hour, knows the store’s products and policies, and passes the tricky conversations to a real person.",
+      approach:
+        "Krispin connects to the store’s WhatsApp number and answers customers instantly, using the store’s own FAQs, documents and product list. When a customer is upset or needs a human, Krispin flags the chat and the team takes over in the same conversation. It also collects warranty claims with photos, keeps a waitlist for out-of-stock products, and lets the store run referral contests and send offers to many customers at once.",
+      benefits:
+        "Customers get answers in seconds instead of hours, so fewer sales slip away. The team spends its time only on the conversations that need a person, warranty claims and restock requests are organized instead of lost in chats, and the store can see what customers are asking about and how much they spend.",
+      technical:
+        "Krispin is a Next.js dashboard on top of the WhatsApp Business API. An LLM agent answers from retrieved store knowledge (FAQs, uploaded files and the product catalog) in the brand’s voice, with escalation rules that flag chats and hand them to a human in the same thread. The unified inbox shows live AI and human replies alongside customer tags, order value and history. Approved message templates power bulk broadcasts, referral campaigns track prizes and leaderboards, the warranty flow captures media and order details for approve/reject review, and the waitlist records demand per product for restock notifications. Analytics cover message volume, escalation trends, B2B/D2C split and customer spend.",
+    },
     category: 'AI Customer Support',
     applicationCategory: 'BusinessApplication',
     audience: 'Online stores & D2C brands',
@@ -151,11 +171,18 @@ export const projects: Project[] = [
     tagline: 'Simple & efficient HR & project management for small startups',
     summary:
       'Etcher is a no-nonsense HR and project console for small teams: employee roster, attendance, tasks, project boards, Discord notifications and live payroll analytics.',
-    description: [
-      'Etcher is the no-nonsense console for managing a team. Every employee, every task and every project in one place — complete visibility, zero clutter.',
-      'The roster is the home of your workforce: search, filter and drag-to-reorder the whole team, mark attendance inline and let performance ratings update automatically from real activity. Every employee also gets a clean public profile page, shareable by link, with salary data kept private.',
-      'Tasks and project boards keep work moving, and Discord sync means the right person hears about every assignment, status change and priority bump instantly. A built-in analytics layer tracks monthly payroll obligations, presence rates and department-level performance straight from your data.',
-    ],
+    about: {
+      problem:
+        "Small startups usually track their team in spreadsheets, group chats and people’s memory. It’s hard to tell who showed up today, who is working on what, and how a project is going. Working out monthly salaries and attendance takes manual effort every month.",
+      solution:
+        "A small team needs one simple place for its people, attendance and tasks, which also tells people when something changes so nobody has to chase updates.",
+      approach:
+        "Etcher keeps the full team list, daily attendance, tasks and projects in one clean dashboard. When a task is assigned or changed, the right person automatically gets a message on Discord, where the team already talks. Every employee also gets a simple profile page that can be shared with a link.",
+      benefits:
+        "Managers spend less time on admin and more time on the work. Everyone knows what they own, updates aren’t missed, and payroll totals, attendance rates and team performance are visible at a glance instead of being rebuilt in a spreadsheet each month.",
+      technical:
+        "Etcher is a Next.js web application. Task assignment, status and priority changes trigger Discord webhook notifications with rich embeds, plus manual progress and reminder pings. Performance ratings are computed automatically from attendance and task activity. Public employee profiles are served on their own routes without authentication and exclude salary data. The analytics layer aggregates monthly payroll obligations, average presence rate and per-department performance from live data, and the roster supports drag-to-reorder, grid and table views, inline attendance marking and dark/light themes.",
+    },
     category: 'HR & Project Management',
     applicationCategory: 'BusinessApplication',
     audience: 'Small startups & agencies',
@@ -197,11 +224,18 @@ export const projects: Project[] = [
     tagline: 'Class & batch scheduling for educators',
     summary:
       'Classman is all-in-one scheduling software for educators: plan batches, run a weekly scheduler, track curriculum and postponements, and share read-only timetables with students.',
-    description: [
-      'Classman is a ruthless scheduler for high-volume educators — zero confusion and complete visibility across every batch, every session, every day.',
-      'The weekly command center shows all classes across every batch in a single view. Mark sessions as completed, track timing and postponements, and switch to a monthly forecast to see what’s coming. Each batch gets its own schedule, duration and color code.',
-      'Classman is built for students too. A public directory lists every active and completed batch, students can look up their own schedule with a code — no login required — and each course curriculum is published as a clean module-by-module timeline. A live availability view shows only busy blocks, never class details.',
-    ],
+    about: {
+      problem:
+        "Teachers who run many batches of classes juggle timings across calendars and WhatsApp groups. Classes get postponed, it’s easy to lose track of how far each batch has got in the course, and students keep asking when the next class is.",
+      solution:
+        "A teacher needs one timetable that tracks every class across all batches, remembers what was taught and what was postponed, and lets students check their own schedule.",
+      approach:
+        "Classman shows every class for the week on one screen. The teacher marks each class as done or postponed, and Classman keeps count of progress for each batch. Students get a code to look up their own schedule without signing up, can read the full course outline, and can see when the teacher is busy.",
+      benefits:
+        "No missed or clashing classes, far fewer “when is the next class?” messages, and a clear picture of where every batch stands. The teacher can also see how often classes get postponed and which batches are falling behind.",
+      technical:
+        "Classman is a Next.js progressive web app. Batch rules (days, timings, duration) generate session schedules shown in weekly and monthly views. Each session records completion, postponement, timing and notes, which feed analytics on execution rate, postponement frequency and delay trends per batch. Public, read-only routes expose batch directories, code-based schedule lookup, curriculum timelines modelled as modules, topics and subtopics with estimated days, and an availability view that reveals only occupied time blocks, never class details.",
+    },
     category: 'Education & Scheduling',
     applicationCategory: 'EducationalApplication',
     audience: 'Teachers, tutors & coaching academies',
@@ -243,11 +277,18 @@ export const projects: Project[] = [
     tagline: 'Project & task management platform for freelancers',
     summary:
       'Vance is a freelance command center: client projects, an auto-scheduler that plans your days, a lightweight CRM and analytics on where your time and revenue go.',
-    description: [
-      'Vance is the operating system for a freelance practice. It replaces the tangle of spreadsheets, sticky notes and calendar guesswork that comes with running client work solo.',
-      'Log every project once — scope, client, money, links, tasks and revision requests — and Vance turns it into a live day-by-day plan. Give each task an estimate, a priority and a deadline, and the auto-scheduler packs your working days, flagging at-risk and overdue work before it slips.',
-      'Contacts keep clients, leads and collaborators in one place, and analytics show revenue earned vs pending, hours per project, your busiest fields and how often each client asks for changes — the numbers that tell you which work is actually worth it.',
-    ],
+    about: {
+      problem:
+        "Freelancers juggle many clients at once, each with their own deadlines, change requests and payments. All of this ends up in spreadsheets, notes and memory, so deadlines slip, it’s hard to know what to work on today, and it’s unclear which clients are actually worth the effort.",
+      solution:
+        "A freelancer needs one place for all client work that also plans their days for them and shows where their time and money really go.",
+      approach:
+        "In Vance you add each project once, with its tasks, deadlines, price and links. Vance then builds a day-by-day plan based on how long each task takes and when it’s due, and warns you about work that’s at risk of running late. It also keeps your clients and contacts in one place and tracks the money you’ve earned and are still owed.",
+      benefits:
+        "You always know exactly what to do today and what’s about to slip, so deadlines are met. You can see how much you’ve earned and what’s pending, and which clients ask for the most changes, which helps you price better and choose better work.",
+      technical:
+        "Vance is a Next.js web application. Its scheduler sorts tasks by deadline urgency and priority and packs them into working days within a configurable daily hour budget, flagging at-risk and overdue work, with week, day and list views. Projects hold tasks, change requests, financials and links; a lightweight CRM links contacts to projects with relationship status. Analytics aggregate earned versus pending revenue, time per project, field and source breakdowns and change-request frequency, all in a teal-and-amber design system with dark and light themes.",
+    },
     category: 'Freelance Management',
     applicationCategory: 'BusinessApplication',
     audience: 'Freelancers & solo studios',
@@ -285,11 +326,18 @@ export const projects: Project[] = [
     tagline: 'Notes & resources sharing platform for university students',
     summary:
       'Parhle is a free, student-run platform for sharing study notes, past papers, books and YouTube channels, curated by subject and university.',
-    description: [
-      'Parhle (from “Parhle Fail Hojayega”) is a free, student-run platform where knowledge shared is power multiplied. Students find curated notes, past papers, books and recommended YouTube channels, organized by university and subject.',
-      'Anyone can contribute: upload notes and summaries through a simple interface, and every submission goes through verification before it goes public. If something is missing, students can request it and help each other fill the gaps.',
-      'Parhle started as a small notes site and grew into a full platform serving students across multiple universities, with accounts, profiles, contribution tracking and clear content and copyright policies.',
-    ],
+    about: {
+      problem:
+        "University students waste hours hunting for notes and past papers scattered across WhatsApp groups, Google Drive links and seniors’ phones. Good material gets lost every semester, and students at smaller universities often have no shared resources at all.",
+      solution:
+        "Students need one free, organized place where they can find and share study material by university and subject.",
+      approach:
+        "Parhle collects notes, past papers, books and recommended YouTube channels, sorted by university and subject. Any student can upload material, every upload is checked before it goes public, and students can request something that’s missing so others can help.",
+      benefits:
+        "It’s completely free, study prep takes far less time, and good material survives from one batch to the next instead of disappearing. Students who contribute help their classmates and build a reputation along the way.",
+      technical:
+        "Parhle is a Next.js progressive web app with user accounts and profiles. Submissions go through a verification step before publishing, and resources are indexed by university and subject with search and filters across notes, past papers, books and channels. A request system lets students ask for missing material, and published content, cookie and copyright policies back a takedown process for flagged content.",
+    },
     category: 'Education',
     applicationCategory: 'EducationalApplication',
     audience: 'University students',
@@ -323,11 +371,18 @@ export const projects: Project[] = [
     tagline: 'AI-assisted workflow orchestration & dashboard generation for SMEs',
     summary:
       'Brenks is an AI-SaaS automation platform for SME owners: compose backend automations from hand-picked modules, route them visually, and let an AI co-pilot generate new ones.',
-    description: [
-      'Brenks is an AI-SaaS platform that lets SME owners build robust backend automations from hand-picked modules — database layers, auto-generated CRUD interfaces and pipelines — without touching boilerplate.',
-      'Can’t find the right module? Describe it. The built-in co-pilot generates secure Python or Node.js modules natively inside the dashboard. Modules are wired together in a visual flow editor that formats data between schemas automatically, so no glue code is needed.',
-      'Existing platforms like Stripe, Twilio, OpenAI, Shopify and SendGrid dock straight into the engine, and the whole system is designed around encryption at rest and automatic scaling.',
-    ],
+    about: {
+      problem:
+        "Small business owners need automations, like reacting to payments, sending notifications or moving data between tools, but hiring developers is expensive and generic no-code tools quickly hit their limits.",
+      solution:
+        "A business owner needs a way to build automations from ready-made building blocks, and get new blocks made on request, without writing code.",
+      approach:
+        "Brenks gives you ready-made modules, such as a database, screens to edit your data, and pipelines, which you connect on a visual canvas by dragging and linking them. If the block you need doesn’t exist, you describe it in plain words and Brenks’ AI builds it for you. It also plugs into tools businesses already use, like Stripe, Shopify and Twilio.",
+      benefits:
+        "Businesses can automate repetitive work without a development team, launch in days instead of months, and keep adding to their automations as they grow, at a fraction of the cost of custom software.",
+      technical:
+        "Brenks is a Next.js platform built on a module system: relational data-layer modules, auto-generated CRUD interfaces and pipeline modules composed in a spatial flow editor that maps data between schemas automatically, removing glue code. An LLM co-pilot generates new Python or Node.js modules inside the dashboard from a plain-language description. Integration modules dock services such as Stripe, Twilio, OpenAI, Shopify and SendGrid, and the data layer is designed around encryption at rest.",
+    },
     category: 'Workflow Automation',
     applicationCategory: 'DeveloperApplication',
     audience: 'SME owners & operators',

@@ -137,12 +137,28 @@ export default async function ProjectPage({ params }: Props) {
       <div className="grid lg:grid-cols-[1fr_340px] gap-0 lg:gap-8 items-start">
         <div>
           <Panel kicker="Overview" title={`About ${p.name}`}>
-            <div className="space-y-4 sm:space-y-5">
-              {p.description.map((para, i) => (
-                <p key={i} className="text-sm sm:text-base lg:text-lg text-black/70 leading-relaxed">
-                  {para}
-                </p>
+            <div className="space-y-6 sm:space-y-8">
+              {[
+                ['The problem', p.about.problem],
+                ['The solution', p.about.solution],
+                [`How ${p.name} solves it`, p.about.approach],
+                ['What you get', p.about.benefits],
+              ].map(([label, text], i) => (
+                <section key={label} className="grid sm:grid-cols-[150px_1fr] gap-2 sm:gap-6">
+                  <h3 className="flex sm:flex-col items-baseline sm:items-start gap-2 sm:gap-1" style={display}>
+                    <span className="text-xs font-black text-black/30">{String(i + 1).padStart(2, '0')}</span>
+                    <span className={`text-sm sm:text-base font-black uppercase tracking-wide leading-tight ${i === 2 ? 'bg-[#fcb345] px-1.5 -mx-1.5' : ''}`}>{label}</span>
+                  </h3>
+                  <p className="text-sm sm:text-base lg:text-lg text-black/75 leading-relaxed">{text}</p>
+                </section>
               ))}
+              <section className="border-2 border-black bg-black text-white p-5 sm:p-6">
+                <h3 className="flex items-baseline gap-2 mb-3" style={display}>
+                  <span className="text-xs font-black text-white/40">05</span>
+                  <span className="text-sm sm:text-base font-black uppercase tracking-wide">Under the hood</span>
+                </h3>
+                <p className="text-xs sm:text-sm lg:text-[15px] text-white/80 leading-relaxed">{p.about.technical}</p>
+              </section>
             </div>
           </Panel>
 
